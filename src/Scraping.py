@@ -43,12 +43,22 @@ class CreateProjectsDatabase:
         return projects_url_and_name
 
     def createURLfromPath(self, path: str = "none"):
+        """
+
+        Args:
+            path (str, optional): Example -> "project/64". Defaults to "none".
+
+        Returns:
+            str: httpから始まるURL 
+        """
         # 与えられたpathからURLのフルパスを生成
         joinedURL = '/'.join([self.BaseURL, path])
         return joinedURL
 
     def getCommentAgainstTitleFromURL(self, URL: str):
-        # URLから対象のコメントをリストで返す
+        """
+        投稿された課題のタイトルに紐づいているであろうURLから対象のコメントをリストで返す
+        """
         res_comments = requests.get(URL)
         res_comments.raise_for_status()
 
@@ -62,10 +72,12 @@ class CreateProjectsDatabase:
         return comments
 
 
-        
-
 if __name__ == "__main__":
+    """
+    以下はすべて簡単な動作テストのために書いたやつ。きちんとしたテストコードは後々書くつもり
+    """
     testInstance = CreateProjectsDatabase()
-    comments = testInstance.getCommentAgainstTitleFromURL("https://kanazawa.ha4go.net/projects/64")
+    comments = testInstance.getCommentAgainstTitleFromURL(
+        "https://kanazawa.ha4go.net/projects/64")
     print(comments)
     print(len(comments))
