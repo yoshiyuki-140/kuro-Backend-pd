@@ -58,6 +58,15 @@ class CreateProjectsDatabase:
     def getCommentAgainstTitleFromURL(self, URL: str):
         """
         投稿された課題のタイトルに紐づいているであろうURLから対象のコメントをリストで返す
+
+        Example : 
+
+        ```
+        testInstance = CreateProjectsDatabase()
+        comments = testInstance.getCommentAgainstTitleFromURL(
+            "https://kanazawa.ha4go.net/projects/64"
+            )
+        ```
         """
         res_comments = requests.get(URL)
         res_comments.raise_for_status()
