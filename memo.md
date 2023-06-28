@@ -13,6 +13,7 @@ https://kanazawa.ha4go.net/projects/n4
     - 課題の内容は'content_box'クラス
 - 課題の提起者は'content_member'クラス
 - 課題がいつ投稿されたかは'content_time'クラス
+- 課題に対するコメントは'comment_text'クラス
 
 ## ユーザーデータベースに関して
 
