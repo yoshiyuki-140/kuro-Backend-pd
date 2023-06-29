@@ -14,6 +14,7 @@ https://kanazawa.ha4go.net/projects/n4
 - 課題の提起者は'content_member'クラス
 - 課題がいつ投稿されたかは'content_time'クラス
 - 課題に対するコメントは'comment_text'クラス
+- 課題にはURLから課題番号なるものを紐づけてその番号で管理できそう
 
 ## ユーザーデータベースに関して
 
