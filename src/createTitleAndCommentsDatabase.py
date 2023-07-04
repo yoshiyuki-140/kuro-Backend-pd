@@ -33,7 +33,8 @@ class CreateProjectsDatabase:
         projectIDをkey,projectTitleをvalueとした辞書を返す
         """
         if self.useProxy:
-            res_projects = requests.get(URLs.AllprojectURL,proxies=self.proxies)
+            res_projects = requests.get(
+                URLs.AllprojectURL, proxies=self.proxies)
         else:
             res_projects = requests.get(URLs.AllprojectURL)
         # sleep(1)
@@ -59,7 +60,7 @@ class CreateProjectsDatabase:
         TitleURL = "/".join([URLs.BaseURL, "projects", ID])
         # keyをprojectID,valueをコメントの入ったリストとする辞書を作成
         if self.useProxy:
-            res_project = requests.get(TitleURL,proxies=self.proxies)
+            res_project = requests.get(TitleURL, proxies=self.proxies)
         else:
             res_project = requests.get(TitleURL)
 
@@ -72,17 +73,35 @@ class CreateProjectsDatabase:
         return comments
 
     def getTitleAndComments(self):
+        """ 課題のtitleと課題IDを
+
+        Returns:
+            _type_: _description_
+        """
         titleIDandTitle = self.getProjectsIDAndTitle()
         return [[title, comments] for title, comments in zip(titleIDandTitle.values(), [self.getCommentsListFromID(id) for id in titleIDandTitle.keys()])]
 
     def update(self):
+        """データベースのアップデート用
+
+            将来的に一つのメソッドを呼び出したらデータベースがすべてupdate できるようにするために作る。
+
+        """
         pass
 
 # for dbg code
 
 
-if __name__ == "__main__":
+def dbg():
+    """
+    簡単な動作テスト用のコード
+    """
     from pprint import pprint
     testInstance = CreateProjectsDatabase(True)
     testContent = testInstance.getTitleAndComments()
     pprint(testContent)
+
+
+if __name__ == "__main__":
+    # ちゃんと動くかなぁ
+    dbg()
