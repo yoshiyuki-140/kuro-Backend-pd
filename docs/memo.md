@@ -1,6 +1,6 @@
 
 
-## 課題に関して
+## ha4goのシステムに関してwebスクレイピングでわかったこと等(夏休み前の記録)
 - 課題の一覧は 
 https://kanazawa.ha4go.net/projects
 にあるよう
