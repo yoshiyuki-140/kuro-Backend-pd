@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # added apps
+    # creted apps
     'accounts.apps.AccountsConfig',
+    # added apps as module
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
