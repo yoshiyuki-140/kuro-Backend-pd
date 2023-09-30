@@ -12,4 +12,4 @@ class Accounts(AbstractUser):
     email = models.EmailField('Email',max_length=100)
     password = models.CharField('パスワード',max_length=100)
     region = models.CharField('地域',max_length=100)
-    Profession = models.CharField('職業',max_length=100)
+    profession = models.CharField('職業',max_length=100)
