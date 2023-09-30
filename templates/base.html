@@ -1,3 +1,4 @@
+{% load django_bootstrap5 %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -14,7 +15,7 @@
     <div class='container justify-content-between'>
       <a href="/" class='navbar-brand'>CivicSeek</a>
       <ul class="navbar-nav mr-md-2">
-        {% if user.is_authenticated %}{% endif %}
+        {% if user.is_authenticated %}
         <li class="nav-item"><a class="nav-link" href="{% url "logout" %}">Logout</a></li>
         {% else %}
         <li class="nav-item"><a class="nav-link" href="{% url "login" %}">Login</a></li>
