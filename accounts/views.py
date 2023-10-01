@@ -4,6 +4,9 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 
+# def nippoCreateView(request):
+    # template_name = "accounts/sigunup.html"
+# 
 class SignUpView(CreateView):
     '''サインアップページのビュー
     '''
