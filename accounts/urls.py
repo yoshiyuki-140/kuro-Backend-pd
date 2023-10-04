@@ -4,7 +4,7 @@ from django.contrib.auth.views import *
 
 signup_view = SignupView.as_view(template_name='accounts/signup.html')
 login_view = LoginView.as_view(template_name='accounts/login.html')
-logout_view = LogoutView.as_view(template_name='accounts/logout.html')
+logout_view = LogoutView.as_view(template_name='accounts/logout.html',redirect_field_name='top')
 password_change_view = PasswordChangeView.as_view(template_name='accounts/password_change.html')
 password_change_done_view = PasswordChangeDoneView.as_view(template_name='accounts/password_change_done.html')
 password_reset_view = PasswordResetView.as_view(template_name='accounts/password_reset.html')

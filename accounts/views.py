@@ -5,6 +5,7 @@ from django.forms.models import BaseModelForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
+from django.contrib.auth.views import *
 
 # Create your views here.
 
@@ -27,4 +28,8 @@ class SignupView(CreateView):
         messages.add_message(self.request, messages.ERROR,"ユーザー登録に失敗しました。")
         return super().form_invalid(form)
 
-
+class CustomLogoutView(LogoutView):
+    # ログアウト後のリダイレクト先を指定するためのget_success_urlメソッドをオーバーライドします。
+    def get_success_url(self):
+        # ログアウト後にリダイレクトしたいURLを指定します。
+        return reverse_lazy('')  # このURLをカスタマイズしてください

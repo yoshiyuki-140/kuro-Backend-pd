@@ -16,12 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from app.views import TopPageView
+from django.views.generic import TemplateView
+
+toppage_view = TemplateView.as_view(template_name='top.html')
 
 urlpatterns = [
     # path('accounts/',include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('app/',include('app.urls')),
     path('accounts/',include('accounts.urls')),
-    path('',TopPageView.as_view(),name='top'),
+    path('', toppage_view,name='top'),
 ]
