@@ -23,7 +23,6 @@ toppage_view = TemplateView.as_view(template_name='top.html')
 urlpatterns = [
     # path('accounts/',include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
-    path('app/',include('app.urls')),
     path('accounts/',include('accounts.urls')),
     path('', toppage_view,name='top'),
 ]
