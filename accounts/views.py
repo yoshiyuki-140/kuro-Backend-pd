@@ -2,10 +2,10 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.forms.models import BaseModelForm
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
-from django.contrib.auth.views import *
+from django.contrib.auth.views import LogoutView
 
 # Create your views here.
 
