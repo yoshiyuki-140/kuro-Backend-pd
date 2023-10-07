@@ -176,4 +176,4 @@ pyrightconfig.json
 # End of https://www.toptal.com/developers/gitignore/api/python
 
 sample_code/
-./config/local.py
+config/local.py
