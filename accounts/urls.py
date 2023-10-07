@@ -2,6 +2,8 @@ from django.urls import path
 from .views import SignupView
 from django.contrib.auth.views import *
 
+app_name = "accounts"
+
 signup_view = SignupView.as_view(template_name='accounts/signup.html')
 login_view = LoginView.as_view(template_name='accounts/login.html')
 logout_view = LogoutView.as_view(template_name='accounts/logout.html',redirect_field_name='top')
@@ -15,7 +17,7 @@ password_reset_complete_view = PasswordResetCompleteView.as_view(template_name='
 urlpatterns = [
     path('signup/', signup_view, name='signup'),
     path('login/', login_view, name='login'),
-    path('logout/', login_view, name='logout'),
+    path('logout/', logout_view, name='logout'),
     path('password_change/', password_change_view, name='password_change'),
     path('password_change/done/', password_change_done_view,name='password_change_done'),
     path('password_reset/', password_reset_view, name='password_reset'),
