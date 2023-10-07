@@ -8,12 +8,14 @@ from topics.models import Topics
 
 class ToppageView(TemplateView):
     template_name = 'general/top.html'
-    topic = get_object_or_404(Topics)
+    # ここでget_object_or_404を使用してTopicsのテーブルオブジェクトを指定するとtopicのデータテーブルを参照してしまいマイグレーション前に 
+    # "such table not found" エラーが出る
+    topic = Topics.objects.all()
     
     # コンテキストに何を入れるのかを追加で指定する
     # get_context_dataのオーバーライドをしているので
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context["topics"] = get_object_or_404(Topics)
+        context["topics"] = self.topic
         return context
     
