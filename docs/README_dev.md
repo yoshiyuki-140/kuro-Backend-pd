@@ -1,10 +1,7 @@
 # 開発者向けのREADME
 
-
-## その他
-
 - このREADMEは完全ではないです。<br>
-自分なりにわかりやすく書いたつもりですが
+自分なりにわかりやすく書いたつもりですが<br>
 **うまく動かない**<br>
 **書いてある内容がわかんない**<br>
 等あれば[https://github.com/yoshiyuki-140/CivicSeek/issues/new/choose](https://github.com/yoshiyuki-140/CivicSeek/issues/new/choose)へコメントしてください<br>
