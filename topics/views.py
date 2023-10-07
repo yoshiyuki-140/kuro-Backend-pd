@@ -31,7 +31,8 @@ def topic_new(request):
 @login_required
 def topic_edit(request, topic_id):
     topic = get_object_or_404(Topics, pk=topic_id)
-    if topic.created_by_id != request.user.id:
+    # ここにworningを示す赤波線が出るのは
+    if topic.create_by_id != request.user.id:
         return HttpResponseForbidden("このスニペットの編集は許可されていません。")
 
     if request.method == "POST":
@@ -55,7 +56,9 @@ def topic_detail(request, topic_id):
     comments = Comments.objects.filter(commented_to=topic_id).all()
     comment_form = CommentForm()
 
-    return render(request, "topic_detail.html", {
+    return render(request, 
+        "topic_detail.html", 
+        {
         'topic': topic,
         'comments': comments,
         'comment_form': comment_form,
@@ -77,4 +80,3 @@ def comment_new(request, topic_id):
         messages.add_message(request, messages.ERROR,
                              "コメントの投稿に失敗しました。")
     return redirect('topics', topic_id=topic_id)
-
