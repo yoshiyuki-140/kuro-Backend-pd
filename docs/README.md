@@ -1,11 +1,4 @@
 # CivicSeek
 
-## 機能
-- 最新の書き込まれた地域課題、人気ランキングなどでの並び順を変えることができる。
-- 課題の検索機能もあり
-- 電話機能（仮）: ボイスチャット
-- ユーザーはログイン機能
-
-## その他
-- セキュリティの都合でmasterブランチをクローンしてもconfig/setting.pyのシークレットキーを抜いてるので動きません！悪しからず！
-- [開発者用README](./README_dev.md)
+- [機能](https://github.com/yoshiyuki-140/CivicSeek/discussions/18)
+- [Setup](./README_dev.md)
