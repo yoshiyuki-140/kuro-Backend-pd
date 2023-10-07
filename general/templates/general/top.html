@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block main %}
+<div class="welcome">
+    <h1 class="title">Civic Seek</h1>
+    <p class="subtitle">あなたの悩みを共有しましょう</p>
+    {% comment %} <a class="btn btn-primary" href="{% url '' %}">課題を投稿する</a> {% endcomment %}
+</div>
+{% if topics %}
+<table class="table">
+    <thead>
+    <tr>
+        <th>投稿者</th>
+        <th>投稿日</th>
+        <th>タイトル</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for topic in topics %}
+    <tr>
+        <th>{{ topic.created_by_id.username }}</th>
+        <th>{{ topic.created_at }}</th>
+        <th><a href="{% url 'topic_detail' topic.id %}">{{ topic.title }}</a></th>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>課題はまだ投稿されていません。</p>
+{% endif %}
+{% endblock %}

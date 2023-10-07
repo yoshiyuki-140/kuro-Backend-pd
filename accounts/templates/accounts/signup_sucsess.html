@@ -1,1 +1,11 @@
-this is signup success page
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+
+{% block main %}
+{% if user.is_authenticated %}
+<h1>会員登録成功</h1>
+<li class="nav-item"><a class="nav-link" href="{% url 'top' %}">次へ</a></li>
+{% endif %}
+
+{% endblock main %}

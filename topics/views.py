@@ -31,7 +31,8 @@ def topic_new(request):
 @login_required
 def topic_edit(request, topic_id):
     topic = get_object_or_404(Topics, pk=topic_id)
-    if topic.created_by_id != request.user.id:
+    # ここにworningを示す赤波線が出るのは
+    if topic.create_by_id != request.user.id:
         return HttpResponseForbidden("このスニペットの編集は許可されていません。")
 
     if request.method == "POST":
