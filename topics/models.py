@@ -16,7 +16,7 @@ class Topics(models.Model):
     description = models.TextField(verbose_name="概要")
     created_at = models.DateTimeField("投稿日",auto_now_add=True)
     # models.PROTECTをしていすることで投稿者が消えてもトピックを消さないようにする.
-    creted_by = models.ForeignKey(settings.AUTH_USER_MODEL, 
+    creted_by_id = models.ForeignKey(settings.AUTH_USER_MODEL, 
                                   related_name='topics_account', 
                                   verbose_name="投稿者",
                                   on_delete=models.PROTECT,
@@ -35,7 +35,7 @@ class Topics(models.Model):
 class Comments(models.Model):
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, 
+    created_by_id = models.ForeignKey(settings.AUTH_USER_MODEL, 
                                    related_name='comments_account', 
                                    verbose_name="投稿者",
                                    on_delete=models.CASCADE)
