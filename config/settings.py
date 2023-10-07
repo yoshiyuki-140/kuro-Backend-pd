@@ -40,9 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # added apps
-    'topics',
-    'accounts',
-    'general',
+    'topics.apps.TopicsConfig',
+    'accounts.apps.AccountsConfig',
+    'general.apps.GeneralConfig',
     'django_bootstrap5',
     # 'debug_toolbar',
 ]
