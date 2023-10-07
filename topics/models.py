@@ -39,7 +39,7 @@ class Comments(models.Model):
                                    related_name='comments_account', 
                                    verbose_name="投稿者",
                                    on_delete=models.CASCADE)
-    topic = models.ForeignKey(Topics, 
+    commentd_to = models.ForeignKey(Topics, 
                               related_name='topics', 
                               verbose_name="トピック",
                               on_delete=models.CASCADE)
