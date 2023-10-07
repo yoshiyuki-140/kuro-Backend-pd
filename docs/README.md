@@ -4,6 +4,7 @@
 [![Tech](https://skillicons.dev/icons?i=html,css,js,py,django,sqlite&perline=6)](https://skillicons.dev)
 
 ## Link
-**[Function](https://github.com/yoshiyuki-140/CivicSeek/discussions/18)**
-**[Dev](./README_dev.md)**
-**[ToDo](https://github.com/users/yoshiyuki-140/projects/6/views/2)**
+**[👀DOC](./README_dev.md)**
+**[📌TODO](https://github.com/users/yoshiyuki-140/projects/6/views/2)**
+**[🐛BUG](https://github.com/yoshiyuki-140/CivicSeek/issues/new/choose)**
+**[💭DISCUSSIONS](https://github.com/yoshiyuki-140/CivicSeek/discussions/new/choose)**
