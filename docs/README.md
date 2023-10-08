@@ -7,4 +7,4 @@
 **[👀DOC](./README_dev.md)**
 **[📌TODO](https://github.com/users/yoshiyuki-140/projects/6/views/2)**
 **[🐛BUG](https://github.com/yoshiyuki-140/CivicSeek/issues/new/choose)**
-**[💭DISCUSSIONS](https://github.com/yoshiyuki-140/CivicSeek/discussions/new/choose)**
+**[💭DISCUSSIONS](https://github.com/yoshiyuki-140/CivicSeek/discussions)**
