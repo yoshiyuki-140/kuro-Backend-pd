@@ -11,4 +11,4 @@ class TopicForm(ModelForm):
 class CommentForm(ModelForm):
     class Meta:
         model = Comments
-        fields = ('comments')
+        fields = ('comment',)

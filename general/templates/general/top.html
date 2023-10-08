@@ -5,8 +5,9 @@
 <div class="welcome">
     <h1 class="title">Civic Seek</h1>
     <p class="subtitle">あなたの悩みを共有しましょう</p>
-    {% comment %} <a class="btn btn-primary" href="{% url '' %}">課題を投稿する</a> {% endcomment %}
+    <a class="btn btn-primary" href="{% url 'topics:topic_new' %}">課題を投稿する</a>
 </div>
+
 {% if topics %}
 <table class="table">
     <thead>
@@ -29,4 +30,5 @@
 {% else %}
 <p>課題はまだ投稿されていません。</p>
 {% endif %}
-{% endblock %}
+
+{% endblock main %}
