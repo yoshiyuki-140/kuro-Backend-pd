@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block main %}
+<h2>{{ topic.title }} by {{ topic.created_by.username }}</h2>
+
+<div class="topic-date">
+    投稿日: {{ topic.created_at|date:"DATETIME_FORMAT" }}
+    {% if user.is_authenticated and topic.created_by_id == user.id %}
+    <a href="{% url 'topic_edit' topic.id %}">編集</a>
+    {% endif %}
+</div>
+
+<p>{{ topic.description }}</p>
+
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">コメント一覧</h3>
+
+        {% if comments %}
+        {% for c in comments %}
+        <hr/>
+        <p class="card-text">{{ c.text }}</p>
+        <small class="text-muted">by {{ c.commented_by.username }} さん {{ c.commented_at|date:"DATETIME_FORMAT" }}</small>
+        {% endfor %}
+        {% else %}
+        <p>コメントはありません。</p>
+        {% endif %}
+    </div>
+    {% if user.is_authenticated %}
+    <div class="card-body">
+        <h4 class="card-title">コメントを投稿する</h4>
+        <form method="post" action="{% url 'comment_new' topic.id %}">
+            {% csrf_token %}
+            {% bootstrap_form comment_form %}
+            {% bootstrap_button button_type="submit" content="コメント" %}
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

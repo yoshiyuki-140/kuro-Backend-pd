@@ -13,19 +13,19 @@ def topic_new(request):
     if request.method == 'POST':
         form = TopicForm(request.POST)
         if form.is_valid():
-            snippet = form.save(commit=False)
-            snippet.created_by = request.user
-            snippet.save()
+            topic = form.save(commit=False)
+            topic.created_by = request.user
+            topic.save()
             messages.add_message(request, messages.SUCCESS,
-                                 "スニペットを作成しました。")
-            return redirect(topic_detail, topic_id=snippet.pk)
+                                 "トピックを作成しました。")
+            return redirect(topic_detail, topic_id=topic.pk)
         else:
             messages.add_message(request, messages.ERROR,
-                                 "スニペットの作成に失敗しました。")
+                                 "トピックの作成に失敗しました。")
     else:
 
         form = TopicForm()
-    return render(request, "topic.html", {'form': form})
+    return render(request, "topics/topic_detail.html", {'form': form})
 
 
 @login_required
@@ -33,21 +33,21 @@ def topic_edit(request, topic_id):
     topic = get_object_or_404(Topics, pk=topic_id)
     # ここにworningを示す赤波線が出るのは
     if topic.create_by_id != request.user.id:
-        return HttpResponseForbidden("このスニペットの編集は許可されていません。")
+        return HttpResponseForbidden("このトピックの編集は許可されていません。")
 
     if request.method == "POST":
         form = TopicForm(request.POST, instance=topic)
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS,
-                                 "スニペットを更新しました。")
+                                 "トピックを更新しました。")
             return redirect('topic_detail', topic_id=topic_id)
         else:
             messages.add_message(request, messages.ERROR,
-                                 "スニペットの更新に失敗しました。")
+                                 "トピックの更新に失敗しました。")
     else:
         form = TopicForm(instance=topic)
-    return render(request, 'snippets/topic_edit.html', {'form': form})
+    return render(request, 'topics/topic_edit.html', {'form': form})
 
 
 @login_required
