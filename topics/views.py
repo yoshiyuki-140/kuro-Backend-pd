@@ -2,8 +2,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseForbidden
-from forms import TopicForm,CommentForm
-from models import Topics,Comments
+from .forms import TopicForm,CommentForm
+from .models import Topics,Comments
 
 # Create your views here.
 
