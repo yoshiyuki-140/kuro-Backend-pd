@@ -24,7 +24,8 @@ class SignupView(CreateView):
         self.object = user
         return HttpResponseRedirect(self.get_success_url())
 
-    def form_invalid(self, form):
+    def form_invalid(self
+                     , form):
         messages.add_message(self.request, messages.ERROR,"ユーザー登録に失敗しました。")
         return super().form_invalid(form)
 
