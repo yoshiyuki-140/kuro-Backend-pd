@@ -1,16 +1,14 @@
 {% extends "base.html" %}
-{% load django_bootstrap5 %}
 
 {% block main %}
 <h2>トピックの編集</h2>
 <form method="POST">
   {% csrf_token %}
-  {% comment %} ブートストラップ使うなら上のコードをコメントアウトして {% endcomment %}
-  {% comment %} If you use bootstrap  {% endcomment %}
+  {% comment %} If you use bootstrap, you can comment out follwing codes {% endcomment %}
   {% comment %} {% bootstrap_form form %} {% endcomment %}
   {% comment %} {% bootstrap_button button_type="submit" content="Save" %} {% endcomment %}
   {{ form.as_p }}
-  <input type="submit" value="保存">
+  <button type="submit" class="btn btn-primary">保存</button>
 </form>
 
 {% endblock main %}
