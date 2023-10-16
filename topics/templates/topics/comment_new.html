@@ -1,0 +1,9 @@
+
+<div class="card-body">
+  <h4 class="card-title">コメントを投稿する</h4>
+  <form method="post" action="{% url 'topics:comment_new' topic.id %}">
+      {% csrf_token %}
+      {% bootstrap_form comment_form %}
+      {% bootstrap_button button_type="submit" content="コメント" %}
+  </form>
+</div>
