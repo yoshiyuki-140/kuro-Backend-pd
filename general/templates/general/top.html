@@ -8,6 +8,7 @@
     <a class="btn btn-primary" href="{% url 'topics:topic_new' %}">課題を投稿する</a>
 </div>
 
+
 {% if topics %}
 <table class="table">
     <thead>
@@ -22,7 +23,7 @@
     <tr>
         <th>{{ topic.created_by_id.username }}</th>
         <th>{{ topic.created_at }}</th>
-        <th><a href="{% url 'topic_detail' topic.id %}">{{ topic.title }}</a></th>
+        <th><a href="{% url 'topics:topic_detail' topic.id %}">{{ topic.title }}</a></th>
     </tr>
     {% endfor %}
     </tbody>
