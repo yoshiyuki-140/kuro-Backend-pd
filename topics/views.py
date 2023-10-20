@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.shortcuts import resolve_url
 from django.urls import reverse_lazy
-from django.views.generic import CreateView,UpdateView,DetailView,ListView
+from django.views.generic import CreateView,UpdateView,DetailView,ListView,DeleteView
 from .models import Topics,Comments
 
 # @login_required
@@ -31,10 +31,6 @@ from .models import Topics,Comments
 #     return redirect('topics', topic_id=pk)
 
 class NewCommentView(CreateView,LoginRequiredMixin):
-    '''
-    TopicDetailViewに移植するべき
-    この構造だとORMオブジェクトが取得できない
-    '''
     template_name = "topics/comment_new.html"
     model = Comments
     form_class = CommentForm
@@ -78,9 +74,6 @@ class NewTopicView(CreateView,LoginRequiredMixin):
         postdata.save()
 
         return super().form_valid(form)
-
-       
-
     
     def get_success_url(self) -> str:
         '''
@@ -121,3 +114,21 @@ class ListTopicView(ListView):
     queryset = Topics.objects.all()
     # 1ページに表示するレコード数
     paginate_by = 10
+
+
+class DeleteTopicView(DeleteView,LoginRequiredMixin):
+    '''
+    投稿した課題を削除するビュー
+    Djangoでは削除の確認画面に設定すればいいと思う
+    '''
+    model = Topics
+    template_name = "topics/topic_delete.html"
+    success_url = reverse_lazy('top')  # 削除後にリダイレクトするpathの名前,ここではトップページにリダイレクトするようにしている
+
+    def get_success_url(self) -> str:
+        '''
+        課題削除後にメッセージを表示する
+        '''
+        successMsg = "課題を削除しました"
+        messages.success(self.request,successMsg)
+        return resolve_url('top')
