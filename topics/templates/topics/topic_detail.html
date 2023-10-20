@@ -28,7 +28,8 @@
         {% endif %}
     </div>
     {% if user.is_authenticated %}
-    {% include "topics/comment_new.html" topic.id %}
+    {% comment %} {% include "topics/comment_new.html" topic.id %} {% endcomment %}
+    {% include "topics/comment_new.html" %}
     {% endif %}
 </div>
 {% endblock %}
