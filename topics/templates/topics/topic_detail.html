@@ -2,34 +2,49 @@
 {% load django_bootstrap5 %}
 
 {% block main %}
-<h2>{{ topic.title }} by {{ topic.created_by.username }}</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title display-4">
+                        タイトル:<br>
+                        <p class="display-6">
+                            {{ topic.title }}
+                        </p>
+                    </h2>
+                    <p class="card-text lead">
+                        概要: {{ topic.description }}
+                    </p>
+                    <small class="text-muted">投稿日: {{ topic.created_at|date:"DATETIME_FORMAT" }}</small>
+                    <small class="text-muted">投稿者: {{ topic.created_by.username }}</small>
+                    {% if user.is_authenticated and topic.created_by_id == user.id %}
+                        <a href="{% url 'topics:topic_edit' topic.id %}" class="btn btn-primary mt-3">編集</a>
+                    {% endif %}
+                </div>
+            </div>
 
-<div class="topic-date">
-    投稿日: {{ topic.created_at|date:"DATETIME_FORMAT" }}
-    {% if user.is_authenticated and topic.created_by_id == user.id %}
-    <a href="{% url 'topics:topic_edit' topic.id %}">編集</a>
-    {% endif %}
-</div>
+            <hr>
 
-<p>{{ topic.description }}</p>
+            <div class="card-body">
+                <h3 class="card-title">コメント一覧</h3>
 
-<div class="card">
-    <div class="card-body">
-        <h3 class="card-title">コメント一覧</h3>
-
-        {% if comments %}
-        {% for c in comments %}
-        <hr/>
-        <p class="card-text">{{ c.text }}</p>
-        <small class="text-muted">by {{ c.commented_by.username }} さん {{ c.commented_at|date:"DATETIME_FORMAT" }}</small>
-        {% endfor %}
-        {% else %}
-        <p>コメントはありません。</p>
-        {% endif %}
+                {% if comments %}
+                    {% for c in comments %}
+                        <hr>
+                        <p class="card-text">{{ c.text }}</p>
+                        <small class="text-muted">by {{ c.commented_by.username }} さん {{ c.commented_at|date:"DATETIME_FORMAT" }}</small>
+                    {% endfor %}
+                {% else %}
+                    <p class="card-text">コメントはありません。</p>
+                {% endif %}
+            </div>
+            <div>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'topics:comment_new' topic.id %}" class="btn btn-primary mt-3">投稿</a>
+                {% endif %}
+            </div>
+        </div>
     </div>
-    {% if user.is_authenticated %}
-    {% comment %} {% include "topics/comment_new.html" topic.id %} {% endcomment %}
-    {% include "topics/comment_new.html" %}
-    {% endif %}
 </div>
 {% endblock %}

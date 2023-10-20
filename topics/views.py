@@ -31,6 +31,10 @@ from .models import Topics,Comments
 #     return redirect('topics', topic_id=pk)
 
 class NewCommentView(CreateView,LoginRequiredMixin):
+    '''
+    TopicDetailViewに移植するべき
+    この構造だとORMオブジェクトが取得できない
+    '''
     template_name = "topics/comment_new.html"
     model = Comments
     form_class = CommentForm
@@ -107,6 +111,7 @@ class DetailTopicView(DetailView,LoginRequiredMixin):
     """
     model = Topics
     template_name = 'topics/topic_detail.html'
+    context_object_name = 'topic'
 
 class ListTopicView(ListView):
     '''
