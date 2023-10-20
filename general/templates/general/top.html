@@ -5,7 +5,10 @@
 <div class="welcome">
     <h1 class="title">Civic Seek</h1>
     <p class="subtitle">あなたの悩みを共有しましょう</p>
+    {% comment %} ユーザーがログイン状態にあるならば、課題登録ボタンを表示する {% endcomment %}
+    {% if user.is_authenticated %}
     <a class="btn btn-primary" href="{% url 'topics:topic_new' %}">課題を投稿する</a>
+    {% endif %}
 </div>
 
 
