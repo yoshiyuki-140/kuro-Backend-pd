@@ -51,11 +51,13 @@ PD実践の期間内であれば読んどきます.
 
     1. Mac,Linux
         ```bash
+        python3 manage.py migrate # create DB
         python3 manage.py runserver
         ```
 
     1. Windows-11
         ```powershell
+        python.exe manage.py migrate # create DB
         python.exe manage.py runserver
         ```
 
