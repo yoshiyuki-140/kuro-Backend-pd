@@ -5,8 +5,6 @@
 <h2>課題投稿</h2>
 <form method="POST">
   {% csrf_token %}
-  {% comment %} {% bootstrap_form form %} {% endcomment %}
-  {% comment %} {% bootstrap_button button_type="submit" content="Create" %} {% endcomment %}
   {{ form.as_p }}
   <button type="submit" class="btn btn-primary">投稿</button>
 </form>

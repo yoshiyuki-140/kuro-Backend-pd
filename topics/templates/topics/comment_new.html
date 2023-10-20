@@ -1,9 +1,12 @@
+{% comment %} これはincludeタグで使うようのものなので'base.html'の継承は必要ない {% endcomment %}
 
 <div class="card-body">
   <h4 class="card-title">コメントを投稿する</h4>
-  <form method="post" action="{% url 'topics:comment_new' topic.id %}">
+  {% comment %} <form method="post" action="{% url 'topics:comment_new' topic.id %}"> {% endcomment %}
+  {% comment %} <form method="post" action="{% url 'topics:comment_new' %}"> {% endcomment %}
+  <form method="post">
       {% csrf_token %}
-      {% bootstrap_form comment_form %}
-      {% bootstrap_button button_type="submit" content="コメント" %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">投稿</button>
   </form>
 </div>
