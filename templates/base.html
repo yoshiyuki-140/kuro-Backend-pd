@@ -1,33 +1,39 @@
 {% load static %}
 {% load django_bootstrap5 %}
-<html>
+
+<!DOCTYPE html>
+<html lang="ja">
 <head>
     <meta charset="utf-8">
     <title>CivicSeek</title>
     {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    {% comment %} <link rel="stylesheet" href="{% static 'snippets/css/style.css' %}"> {% endcomment %}
-    {% block extraheader %}{% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand flex-md-row navbar-dark bg-dark">
-    <div class="container justify-content-between">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
         <a href="/" class="navbar-brand">CivicSeek</a>
-        <ul class="navbar-nav mr-md-2">
+        <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout' %}">ログアウト</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:logout' %}">ログアウト</a>
+                </li>
             {% else %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">ログイン</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'accounts:signup' %}">アカウント登録</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:login' %}">ログイン</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:signup' %}">アカウント登録</a>
+                </li>
             {% endif %}
         </ul>
     </div>
 </nav>
 <main>
-    <div class="container">
+    <div class="container mt-4">
         {% bootstrap_messages %}
         {% block main %}{% endblock %}
     </div>
 </main>
+{% bootstrap_javascript %}
 </body>
 </html>

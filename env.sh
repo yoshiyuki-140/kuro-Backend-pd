@@ -14,6 +14,12 @@ function run () {
     python3 "$PROJECT_ROOT"/manage.py runserver
 }
 
+function admin () {
+    explorer.exe http://"$IP":"$PORT"/admin
+    python3 "$PROJECT_ROOT"/manage.py runserver
+}
+
+
 function test () {
     python3 "$PROJECT_ROOT"/manage.py test
 }
