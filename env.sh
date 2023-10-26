@@ -1,5 +1,5 @@
 #!/bin/bash
-# The way to tidy enviromnet.
+# The way to tidy environmet.
 
 PROJECT_ROOT="$(pwd)"
 
