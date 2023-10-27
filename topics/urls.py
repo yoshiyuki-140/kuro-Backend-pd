@@ -1,16 +1,10 @@
 from django.urls import path
-from .views import DetailTopicView,EditTopicView,NewTopicView,ListTopicView
 
 # postリクエストを受け取る用のviewルーティング
-from .views import NewCommentView
+from .views import *
 
 app_name = "topics"
 
-topic_new = NewTopicView.as_view()
-topic_edit = EditTopicView.as_view()
-topic_detail = DetailTopicView.as_view()
-topic_list = ListTopicView.as_view()
-comment_new = NewCommentView.as_view()
 
 urlpatterns = [
     path('topic_new/',topic_new,name='topic_new'),

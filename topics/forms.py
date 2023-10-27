@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from topics.models import Topics,Comments
+from topics.models import Topic,Comment
 
 # ここではModelFormクラスを継承してフォームを作成しているけど
 # 今後細かい設定をフォームに対して行うことがあると思うからその時は
@@ -9,11 +9,11 @@ from topics.models import Topics,Comments
 
 class TopicForm(ModelForm):
     class Meta:
-        model = Topics
+        model = Topic
         fields = ('title','description')
 
         
 class CommentForm(ModelForm):
     class Meta:
-        model = Comments
+        model = Comment
         fields = ('comment',)
