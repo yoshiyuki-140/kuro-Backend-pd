@@ -3,7 +3,7 @@ from django.test import TestCase
 # Create your tests here.
 
 from django.contrib.auth import get_user_model
-from topics.models import Topics,Tags,Comments
+from topics.models import Topic,Tag,Comment
 
 UserModel = get_user_model()
 
@@ -34,11 +34,11 @@ class EditTopicTemplateTest(TestCase):
             password='secret',
         )
 
-        self.tag = Tags.objects.create(
+        self.tag = Tag.objects.create(
             name = 'test tag',
         )
 
-        self.topic = Topics.objects.create(
+        self.topic = Topic.objects.create(
             title = 'test topic',
             description = 'test description',
             created_by = self.user, # ここはself.user.idにしたほうがいいのかも
@@ -49,7 +49,7 @@ class EditTopicTemplateTest(TestCase):
         self.topic.tags.add(self.tag)
         self.topic.created_by = self.user
 
-        self.comment = Comments.objects.create(
+        self.comment = Comment.objects.create(
             comment = 'test comment',
             created_by = self.user,
             commented_to = self.topic,

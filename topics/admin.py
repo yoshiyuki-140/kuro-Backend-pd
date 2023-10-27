@@ -3,4 +3,4 @@ from django.contrib import admin
 # Register your models here.
 from .models import *
 
-admin.site.register([Tags,Topics,Comments])
+admin.site.register([Tag,Topic,Comment])

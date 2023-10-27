@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 
 UserModel = get_user_model()
 
-class Tags(models.Model):
+class Tag(models.Model):
     name = models.CharField(max_length=100)
 
     class Meta:
@@ -14,7 +14,7 @@ class Tags(models.Model):
     def __str__(self):
         return self.name
 
-class Topics(models.Model):
+class Topic(models.Model):
     title = models.CharField(verbose_name="タイトル",max_length=100)
     description = models.TextField(verbose_name="概要")
     created_at = models.DateTimeField("投稿日",auto_now_add=True)
@@ -26,7 +26,7 @@ class Topics(models.Model):
                                   on_delete=models.CASCADE,
                                   default="",
                                   blank=True)
-    tags = models.ManyToManyField(Tags,
+    tags = models.ManyToManyField(Tag,
                                   verbose_name='タグ',
                                   blank=True)
     like_count = models.IntegerField(default=0)
@@ -36,14 +36,14 @@ class Topics(models.Model):
     def __str__(self):
         return self.title
 
-class Comments(models.Model):
+class Comment(models.Model):
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(UserModel,
                                    related_name='comments_account', 
                                    verbose_name="投稿者",
                                    on_delete=models.CASCADE)
-    commented_to = models.ForeignKey(Topics, 
+    commented_to = models.ForeignKey(Topic, 
                               related_name='topics', 
                               verbose_name="トピック",
                               on_delete=models.CASCADE)
