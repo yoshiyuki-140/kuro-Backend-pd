@@ -1,7 +1,7 @@
 from typing import Any
 from django.shortcuts import render,get_object_or_404,redirect
 from django.views.generic import TemplateView
-from topics.models import Topics
+from topics.models import Topic
 
 # Create your views here.
 
@@ -15,7 +15,7 @@ class ToppageView(TemplateView):
     # get_context_dataのオーバーライドをしているので
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        self.topic = Topics.objects.all()
+        self.topic = Topic.objects.all()
         context["topics"] = self.topic
         return context
     
