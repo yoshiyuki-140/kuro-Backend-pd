@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from topics.models import *
 
 # Create your views here.
 
@@ -8,10 +9,12 @@ def detail_topic(request, topic_id):
     投稿表示画面
     '''
     template_name = 'topics/detail_topic.html'
-    return render(request, template_name)
+    topic = Topic.objects.get(pk=topic_id)
+
+    return render(request, template_name, context={'topic': topic})
 
 
-def create_comment(request,topic_id):
+def create_comment(request, topic_id):
     '''
     投稿表示画面(コメント投稿)
     '''

@@ -2,4 +2,16 @@
 
 {% block main %}
   <h2>投稿表示画面</h2>
+  <div>
+    <h3>タイトル:{{ topic.title }}</h3>
+    <small>投稿日:{{ topic.created_at }}</small>
+    <small>投稿者:{{ topic.created_by }}</small>
+  </div>
+  <div>
+    <p>{{ topic.description }}</p>
+  </div>
+  <div>
+    <button type="submit" name="button_like">♡いいね</button>
+    <button type="submit" name="button_comment">💬コメント</button>
+  </div>
 {% endblock %}
