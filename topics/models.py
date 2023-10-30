@@ -26,6 +26,7 @@ class Topic(models.Model):
                                   verbose_name="投稿者",
                                   on_delete=models.CASCADE,
                                   default=None,
+                                  null=True,
                                   blank=True)
     tags = models.ManyToManyField(Tag,
                                   verbose_name='タグ') # ManyToManyはデフォでblank=Trueになってる
