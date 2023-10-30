@@ -9,11 +9,8 @@ PORT=8000
 # 開発時に有用なコード達
 
 function open-browser () {
-    # Wsl2 only
-    explorer.exe http://"$IP":"$PORT"/
-    # ubuntu 22.04 LTS
-    xdg-open http://"$IP":"$PORT"/
-
+    # Wsl2 only                           # ubuntu 22.04 LTS
+    explorer.exe http://"$IP":"$PORT"/ || xdg-open http://"$IP":"$PORT"/ 
 }
 
 
