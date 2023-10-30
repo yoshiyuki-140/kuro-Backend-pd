@@ -40,7 +40,8 @@ class Topic(models.Model):
 class Comment(models.Model):
     comment = models.TextField()
     # 下のcreated_atはauto_now_add=Trueにしてしまうと,編集された時も更新されるため、変数名的に適切ではない.から消した
-    created_at = models.DateTimeField()
+    # 今回は編集をしないためauto_now_add=Trueを指定
+    created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(UserModel,
                                    related_name='comments_account', 
                                    verbose_name="投稿者",
