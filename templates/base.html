@@ -15,7 +15,10 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a href="/" class="navbar-brand">CivicSeek</a>
-        {% comment %} <ul> {% endcomment %}
+        <ul>
+          <li>
+            <a href="{% url 'home' %}" class="nav-link text-primary">HOME</a>
+          </li>
           {% comment %} {% if user.is_authenticated %} {% endcomment %}
             {% comment %} <li> {% endcomment %}
               {% comment %} <a href="{% url 'accounts:logout' %}">ログアウト</a> {% endcomment %}
@@ -28,7 +31,7 @@
               {% comment %} <a href="{% url 'accounts:signup' %}">サインアップ</a> {% endcomment %}
             {% comment %} </li> {% endcomment %}
           {% comment %} {% endif %} {% endcomment %}
-        {% comment %} </ul> {% endcomment %}
+        </ul>
       </div>
     </nav>
     <main>
