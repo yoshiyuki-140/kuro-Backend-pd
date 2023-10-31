@@ -22,4 +22,5 @@ urlpatterns = [
     path('',top,name='top'),
     path('admin/', admin.site.urls),
     path('topics/',include('topics.urls')),
+    path('general/',include('general.urls')),
 ]
