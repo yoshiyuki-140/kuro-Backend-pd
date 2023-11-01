@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from topics.models import *
+from topics.models import * 
 from django.http import HttpResponse
 from django.utils.html import escape
 from django.urls import reverse
@@ -36,6 +36,7 @@ def create_comment(request, topic_id):
     template_name = 'topics/create_comment.html'
     topic = Topic.objects.get(pk=topic_id)
     comments = Comment.objects.filter(commented_to=topic)
+    user = request.user # ログインしているユーザーのオブジェクト
 
     if request.method == "POST":
         '''コメントが投稿されたら
@@ -44,9 +45,8 @@ def create_comment(request, topic_id):
         # コメントの格納
         comment_instance = Comment.objects.create(
             comment = request.POST.get('comment'),
-            created_by = UserModel.objects.get(pk=1), # change to `created_by = request.user`
-            commented_to = topic
-        )
+            created_by = user, # change to `created_by = request.user`
+            commented_to = topic)
 
         # DBに保存
         comment_instance.save()
@@ -55,7 +55,7 @@ def create_comment(request, topic_id):
         return redirect(reverse('create_comment',args=[topic_id]))
 
 
-    return render(request, template_name,context={'topic':topic,'comments':comments})
+    return render(request, template_name,context={'topic':topic,'comments':comments,'username':user.username})
 
 
 def create_topic(request):
@@ -64,6 +64,7 @@ def create_topic(request):
     '''
     # tepmalteの場所を定義
     template_name = 'topics/create_topic.html'
+    user = request.user # ログインしているユーザーのユーザー名
 
     if request.method == "POST":  # 押されたボタンに関わらずPOSTされた時に実行
         '''
@@ -85,9 +86,7 @@ def create_topic(request):
         topic = Topic.objects.create(
             title=title,
             description=description,
-            created_by=UserModel.objects.get(pk=1)  # ここは変更しないといけない
-            # 変えるなら下みたいな感じ
-            # created_by = request.user
+            created_by=user  # ここは変更しないといけない
         )
 
         # データベースに保存
@@ -97,7 +96,7 @@ def create_topic(request):
         return redirect('complate_create_topic')
 
     # POST等が場合は以下を実行して、template_nameをレンダリング
-    return render(request, template_name)
+    return render(request, template_name,context={"username":user.username})
 
 
 def complete_create_topic(request):

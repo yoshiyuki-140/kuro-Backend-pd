@@ -6,23 +6,32 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.contrib.auth.views import LogoutView
+from django.shortcuts import render,redirect
 
 # Create your views here.
 
+
+def signup_success(request):
+    # 会員登録成功画面
+    '''アカウント
+    '''
+    template_name = 'accounts/signup_success.html'
+    return render(request,template_name)
 
 class SignupView(CreateView):
     app_name = "accounts"
     form_class = UserCreationForm
     template_name = "accounts/signup.html"
-    success_url = reverse_lazy("home") # ここでエラー出る.
+    success_url = reverse_lazy('home')
+
 
     def form_valid(self, form: BaseModelForm):
         user = form.save()
         login(self.request, user)
         messages.add_message(self.request, messages.SUCCESS,"ユーザー登録しました。")
-
         self.object = user
-        return HttpResponseRedirect(self.get_success_url())
+        # return HttpResponseRedirect(self.get_success_url())
+        return render(request=self.request,template_name='accounts/signup_success.html')
 
     def form_invalid(self
                      , form):

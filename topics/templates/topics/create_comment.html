@@ -22,7 +22,7 @@
   <div>
     {% for comment in comments %}
       <div>
-        <h5>名前:{{ comment.commented_by }}</h5>
+        <h5>名前:{{ comment.created_by }}</h5>
         <p>コメント:{{ comment.comment }}</p>
       </div>
     {% endfor %}
