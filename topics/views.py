@@ -3,6 +3,8 @@ from topics.models import *
 from django.http import HttpResponse
 from django.utils.html import escape
 from django.urls import reverse
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 UserModel = get_user_model()
@@ -25,10 +27,15 @@ def detail_topic(request, topic_id):
             '''コメントが押された時
             '''
             return redirect(reverse('create_comment',args=[topic_id]))
+        elif "button_delete_comment" in request.POST:
+            '''削除ボタンが押された時
+            '''
+            topic.delete()
+            return redirect(reverse('home'))
 
     return render(request, template_name, context={'topic': topic})
 
-
+@login_required
 def create_comment(request, topic_id):
     '''
     投稿表示画面(コメント投稿)
@@ -57,7 +64,7 @@ def create_comment(request, topic_id):
 
     return render(request, template_name,context={'topic':topic,'comments':comments,'username':user.username})
 
-
+@login_required
 def create_topic(request):
     '''
     投稿画面
@@ -98,7 +105,7 @@ def create_topic(request):
     # POST等が場合は以下を実行して、template_nameをレンダリング
     return render(request, template_name,context={"username":user.username})
 
-
+@login_required
 def complete_create_topic(request):
     '''
     投稿完了画面
