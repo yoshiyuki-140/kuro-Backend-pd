@@ -14,7 +14,7 @@ class SignupView(CreateView):
     app_name = "accounts"
     form_class = UserCreationForm
     template_name = "accounts/signup.html"
-    success_url = reverse_lazy("top") # ここでエラー出る.
+    success_url = reverse_lazy("home") # ここでエラー出る.
 
     def form_valid(self, form: BaseModelForm):
         user = form.save()
@@ -33,4 +33,4 @@ class CustomLogoutView(LogoutView):
     # ログアウト後のリダイレクト先を指定するためのget_success_urlメソッドをオーバーライドします。
     def get_success_url(self):
         # ログアウト後にリダイレクトしたいURLを指定します。
-        return reverse_lazy('top')  # このURLをカスタマイズしてください
+        return reverse_lazy('home')  # このURLをカスタマイズしてください
