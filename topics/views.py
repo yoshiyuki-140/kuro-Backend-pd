@@ -1,100 +1,107 @@
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.forms.models import BaseModelForm
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, HttpResponseForbidden,HttpResponseRedirect
-from .forms import TopicForm,CommentForm
-# from django.views.generic import *
-from django.contrib import messages
-from django.shortcuts import resolve_url
-from .models import Topic,Comment
+from django.shortcuts import render, redirect
+from topics.models import * 
+from django.http import HttpResponse
+from django.utils.html import escape
+from django.urls import reverse
+
+# Create your views here.
+UserModel = get_user_model()
 
 
-# topic views 
-def topic_new(request):
-    template_name = 'topics/topic_new.html'
-    if request.method == 'POST':
-        form = TopicForm(request.POST)
-        if form.is_valid():
-            topic = form.save(commit=False)
-            topic.created_by = request.user
-            topic.save()
-            successMsg = "課題を投稿しました"
-            messages.success(request,successMsg)
-            return redirect(topic_detail,topic_id=topic.pk)
-        else:
-            messages.error(request,"Form's contents is not correct.")
-    else:
-        form = TopicForm()
-
-    return render(request,template_name,{'form':form})
-
-def topic_detail(request,topic_id):
-    template_name = 'topics/topic_detail.html'
-    # topic = Topic.objects.get(pk=topic_id)
-    topic = get_object_or_404(Topic,pk=topic_id)
-    comments = Comment.objects.filter(topic=topic)
-    context = {
-        'topic':topic,
-        'comments':comments
-        }
-    return render(request,template_name,context)
-
-def topic_edit(request,topic_id):
+def detail_topic(request, topic_id):
     '''
-    課題編集用のtopic
+    投稿表示画面
     '''
-    template_name = 'topics/topic_edit.html'
-    topic = get_object_or_404(Topic,pk=topic_id)
-    # if topic.created_by_id != request.user.id:
-    if topic.created_by != request.user.id:
-        errorMsg = "この話題の編集は許可されていません"
-        return HttpResponseForbidden(errorMsg)
-        
+    template_name = 'topics/detail_topic.html'
+    topic = Topic.objects.get(pk=topic_id)
+
     if request.method == "POST":
-        form = TopicForm(request.POST)
-        if form.is_valid(): # この分岐いらないかもねformに投稿すれば自然に反映される鴨
-            successMsg = "課題が編集されました"
-            messages.success(request,successMsg)
-            form.save()
-            return redirect('topics/topic_detail.html',topic_id=topic_id)
-    else:
-        form = TopicForm(instance=topic)
+        if "button_like" in request.POST:
+            '''いいねが押された時
+            '''
+            topic.like_count += 1 # とりあえず+1にしてる
+            topic.save()
+        elif "button_comment" in request.POST:
+            '''コメントが押された時
+            '''
+            return redirect(reverse('create_comment',args=[topic_id]))
 
-    return render(request,template_name,context={'topic':form})
+    return render(request, template_name, context={'topic': topic})
 
-def topic_delete(request,topic_id):
+
+def create_comment(request, topic_id):
     '''
-    削除確認画面
+    投稿表示画面(コメント投稿)
     '''
-    template_name = 'topics/topic_delete.html'
-    topic = get_object_or_404(Topic,pk=topic_id)
-    if topic.created_by != request.user.id:
-        errorMsg = "あなたにはdelete権限がありません"
-        return HttpResponseForbidden(errorMsg)
+    template_name = 'topics/create_comment.html'
+    topic = Topic.objects.get(pk=topic_id)
+    comments = Comment.objects.filter(commented_to=topic)
+    user = request.user # ログインしているユーザーのオブジェクト
 
-    if request.method == 'POST': # deleteボタンが押されたら
-        topic.delete() # その話題をDBから削除
-        messages.success(request,"課題の削除に成功しました") # 実行メッセージ
-        return redirect('topics/topic_detail.html',topic_id=topic_id)
-    return render(request,template_name)
+    if request.method == "POST":
+        '''コメントが投稿されたら
+        '''
+
+        # コメントの格納
+        comment_instance = Comment.objects.create(
+            comment = request.POST.get('comment'),
+            created_by = user, # change to `created_by = request.user`
+            commented_to = topic)
+
+        # DBに保存
+        comment_instance.save()
+
+        # 自分自身にリダイレクトして画面リロード
+        return redirect(reverse('create_comment',args=[topic_id]))
 
 
-# comments views
+    return render(request, template_name,context={'topic':topic,'comments':comments,'username':user.username})
 
-@login_required
-def comment_new(request, pk:int):
-    topic = get_object_or_404(Topic, pk=pk)
 
-    form = CommentForm(request.POST)
-    if form.is_valid():
-        comment = form.save(commit=False)
-        comment.commented_to = topic
-        comment.commented_by = request.user
-        comment.save()
-        messages.add_message(request, messages.SUCCESS,
-                             "コメントを投稿しました。")
-    else:
-        messages.add_message(request, messages.ERROR,
-                             "コメントの投稿に失敗しました。")
-    return redirect('topics', topic_id=pk)
+def create_topic(request):
+    '''
+    投稿画面
+    '''
+    # tepmalteの場所を定義
+    template_name = 'topics/create_topic.html'
+    user = request.user # ログインしているユーザーのユーザー名
+
+    if request.method == "POST":  # 押されたボタンに関わらずPOSTされた時に実行
+        '''
+        ここはバリデーションやサニタイズが必要
+        '''
+        # リクエストから入力データを取得
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+
+        # バリデーション : タイトルと説明が空でないことを確認
+        if not title or not description:
+            return HttpResponse("タイトルと説明は必須です.")
+
+        # サニタイズ
+        title = escape(title)
+        description = escape(description)
+
+        # モデルインスタンスの生成
+        topic = Topic.objects.create(
+            title=title,
+            description=description,
+            created_by=user  # ここは変更しないといけない
+        )
+
+        # データベースに保存
+        topic.save()
+
+        # 成功時はcomplate_create_topicへリダイレクト
+        return redirect('complate_create_topic')
+
+    # POST等が場合は以下を実行して、template_nameをレンダリング
+    return render(request, template_name,context={"username":user.username})
+
+
+def complete_create_topic(request):
+    '''
+    投稿完了画面
+    '''
+    template_name = 'topics/complete_create_topic.html'
+    return render(request, template_name)

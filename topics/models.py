@@ -1,3 +1,4 @@
+# Create your models here.
 from django.db import models
 from django.conf import settings
 # Create your models here.
@@ -24,11 +25,11 @@ class Topic(models.Model):
                                   related_name='topics_account', 
                                   verbose_name="投稿者",
                                   on_delete=models.CASCADE,
-                                  default="",
+                                  default=None,
+                                  null=True,
                                   blank=True)
     tags = models.ManyToManyField(Tag,
-                                  verbose_name='タグ',
-                                  blank=True)
+                                  verbose_name='タグ') # ManyToManyはデフォでblank=Trueになってる
     like_count = models.IntegerField(default=0)
     class Meta:
         db_table = "topics"
@@ -38,6 +39,8 @@ class Topic(models.Model):
 
 class Comment(models.Model):
     comment = models.TextField()
+    # 下のcreated_atはauto_now_add=Trueにしてしまうと,編集された時も更新されるため、変数名的に適切ではない.から消した
+    # 今回は編集をしないためauto_now_add=Trueを指定
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(UserModel,
                                    related_name='comments_account', 
@@ -53,4 +56,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment
-

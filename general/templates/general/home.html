@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block main %}
+  <div>
+    <h1>This is home page.</h1>
+    <a href="{% url 'create_topic' %}">投稿する</a>
+  </div>
+  <div>
+    <h3>Topic List</h3>
+    <div>
+      {% if topics %}
+        <ul>
+          {% for topic in topics %}
+            <li>
+              <div>
+                <a href="{% url 'detail_topic' topic_id=topic.id %}">{{ topic.title }}</a>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

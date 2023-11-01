@@ -1,15 +1,11 @@
 from django.urls import path
-
-# postリクエストを受け取る用のviewルーティング
-from .views import *
-
-app_name = "topics"
-
+from topics.views import *
 
 urlpatterns = [
-    path('topic_new/',topic_new,name='topic_new'),
-    path('<int:pk>/edit/',topic_edit,name='topic_edit'),
-    path('<int:pk>/',topic_detail,name='topic_detail'),
-    path('<int:pk>/comment_new/',comment_new,name='comment_new'),
-    # path('topic_list/',topic_list,name='topic_list'),
+    path('complete_create_topic/', complete_create_topic,
+         name='complate_create_topic'),
+    path('<int:topic_id>/create_comment/',
+         create_comment, name='create_comment'),
+    path('create_topic/', create_topic, name='create_topic'),
+    path('detail_topic/<int:topic_id>/', detail_topic, name='detail_topic'),
 ]
