@@ -15,6 +15,7 @@
       {% csrf_token %}
       <small>{{ topic.like_count }}</small><button type="submit" name="button_like">♡いいね</button>
       <button type="submit" name="button_comment">💬コメント</button>
+      <button type="submit" name="button_delete_comment">削除</button>
     </form>
   </div>
 {% endblock %}

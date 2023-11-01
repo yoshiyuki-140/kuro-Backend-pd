@@ -3,6 +3,7 @@ from topics.models import *
 from django.http import HttpResponse
 from django.utils.html import escape
 from django.urls import reverse
+from django.contrib import messages
 
 # Create your views here.
 UserModel = get_user_model()
@@ -25,6 +26,11 @@ def detail_topic(request, topic_id):
             '''コメントが押された時
             '''
             return redirect(reverse('create_comment',args=[topic_id]))
+        elif "button_delete_comment" in request.POST:
+            '''削除ボタンが押された時
+            '''
+            topic.delete()
+            return redirect(reverse('home'))
 
     return render(request, template_name, context={'topic': topic})
 
