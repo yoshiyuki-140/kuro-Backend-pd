@@ -19,18 +19,18 @@
           <li>
             <a href="{% url 'home' %}" class="nav-link text-primary">HOME</a>
           </li>
-          {% comment %} {% if user.is_authenticated %} {% endcomment %}
-            {% comment %} <li> {% endcomment %}
-              {% comment %} <a href="{% url 'accounts:logout' %}">ログアウト</a> {% endcomment %}
-            {% comment %} </li> {% endcomment %}
-          {% comment %} {% else %} {% endcomment %}
-            {% comment %} <li> {% endcomment %}
-              {% comment %} <a href="{% url 'accounts:login' %}">ログイン</a> {% endcomment %}
-            {% comment %} </li> {% endcomment %}
-            {% comment %} <li> {% endcomment %}
-              {% comment %} <a href="{% url 'accounts:signup' %}">サインアップ</a> {% endcomment %}
-            {% comment %} </li> {% endcomment %}
-          {% comment %} {% endif %} {% endcomment %}
+          {% if user.is_authenticated %}
+            <li>
+              <a href="{% url 'accounts:logout' %}">ログアウト</a>
+            </li>
+          {% else %}
+            <li>
+              <a href="{% url 'accounts:login' %}">ログイン</a>
+            </li>
+            <li>
+              <a href="{% url 'accounts:signup' %}">サインアップ</a>
+            </li>
+          {% endif %}
         </ul>
       </div>
     </nav>
