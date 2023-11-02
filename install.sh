@@ -1,21 +1,23 @@
 #!/bin/bash
 # Author : Yoshiyuki Kurose
-# This script is bash script on 'Ubuntu 22.04 LTS' version.
-# So, In this script, I use `apt` command.
+# This is install bash shell script
 
-PROJECT_ROOT=$(pwd)
+timeout_max=15
 
+echo "start(._.)b!" # print start message 
 
-function locationErrorMsg() {
-    local LOCATION_ERROR_MSG="Is this dir correct location?"
-    echo "$LOCATION_ERROR_MSG";
-    return 1
-}
+# install required system packages
+sudo apt update && sudo apt upgrade -y # update your system
+sudo apt install python3 git python3-venv python3-pip # install required packages
+# download git repository
+timeout $timeout_max git clone https://github.com/Team-west-JAPAN/Backend.git \
+    || timeout $timeout_max git clone git@github.com:Team-west-JAPAN/Backend.git \
+    || echo "Maybe you're messing with your proxy settings...(._.)b"
 
-git clone https://github.com/yoshiyuki-140/CivicSeek.git
-cd CivicSeek || locationErrorMsg
-python3 -m pip venv venv # python仮想環境venv起動準備
-./venv/bin/activate # 仮想環境起動
-cd ./setup
-source regenerate_key.sh || locationErrorMsg
-cd ..
+# configure your environment
+cd Backend # move to Backend dir
+python3 -m venv venv # create virtual environment for python
+source ./venv/bin/activate # activate venv
+pip install -r requirements.txt # install required packages
+
+echo "done(._.)b!..." # print end message
