@@ -6,7 +6,7 @@ from accounts.views import *
 app_name = "accounts"
 
 signup_view = SignupView.as_view(template_name='accounts/signup.html')
-login_view = LoginView.as_view(template_name='accounts/login.html')
+login_view = CustomLoginView.as_view()
 logout_view = LogoutView.as_view(
     template_name='accounts/logout.html', redirect_field_name='top')
 password_change_view = PasswordChangeView.as_view(

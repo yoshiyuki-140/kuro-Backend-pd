@@ -1,14 +1,16 @@
 from django.contrib import messages
 from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import *
+from django.contrib.auth.forms import *
 from django.forms.models import BaseModelForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.contrib.auth.views import LogoutView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from accounts.forms import ProfileEdit, SignUpForm
+from accounts.forms import ProfileEdit, SignUpForm, CustomLoginForm
 
 
 # Create your views here.
@@ -20,6 +22,22 @@ def signup_success(request):
     '''
     template_name = 'accounts/signup_success.html'
     return render(request, template_name)
+
+
+class CustomLoginView(LoginView):
+    app_name = "accounts"
+    authentication_form = CustomLoginForm
+    form_class = CustomLoginForm
+    template_name = "accounts/login.html"
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        messages.success(self.request, "ログインに成功しました")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "ログインに失敗しました")
+        return super().form_invalid(form)
 
 
 class SignupView(CreateView):
