@@ -75,7 +75,7 @@ def profile_view(request):
         if "edit_profile" in request.POST:
             '''編集ボタンが押されたら
             '''
-            return redirect('')
+            return redirect('accounts:edit_profile_view')
 
     return render(request, 'accounts/profile.html', {'user': request.user})
 
@@ -91,7 +91,7 @@ def edit_profile_view(request):
             form = ProfileEdit(request.POST, instance=request.user)
             if form.is_valid():
                 form.save()
-                return redirect('profile_view')  # プロフィールページにリダイレクト
+                return redirect('accounts:profile_view')  # プロフィールページにリダイレクト
         else:
             form = ProfileEdit(instance=request.user)  # ここは要検討
     else:
