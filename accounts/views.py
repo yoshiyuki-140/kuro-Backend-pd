@@ -8,6 +8,8 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.views import LogoutView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
+from accounts.forms import ProfileEdit, SignUpForm
+
 
 # Create your views here.
 
@@ -22,7 +24,7 @@ def signup_success(request):
 
 class SignupView(CreateView):
     app_name = "accounts"
-    form_class = UserCreationForm
+    form_class = SignUpForm
     template_name = "accounts/signup.html"
     success_url = reverse_lazy('home')
 
@@ -47,11 +49,34 @@ class CustomLogoutView(LogoutView):
 
 
 def profile_view(request):
-    '''profile
+    '''profileの表示をする
     '''
     if request.method == "POST":
-        '''編集ボタンが押されたら
+        '''何かのボタンが押されたら
         '''
-        return redirect('')
+        if "edit_profile" in request.POST:
+            '''編集ボタンが押されたら
+            '''
+            return redirect('')
 
     return render(request, 'accounts/profile.html', {'user': request.user})
+
+
+def edit_profile_view(request):
+    '''profileの編集ページ
+    '''
+    if request.method == 'POST':
+        '''何らかのボタンが押されたら
+        '''
+        if "save_profile" in request.POST:
+            pass
+            form = ProfileEdit(request.POST, instance=request.user)
+            if form.is_valid():
+                form.save()
+                return redirect('profile_view')  # プロフィールページにリダイレクト
+        else:
+            form = ProfileEdit(instance=request.user)  # ここは要検討
+    else:
+        form = ProfileEdit(instance=request.user)
+
+    return render(request, 'accounts/edit_profile.html', {'form': form})

@@ -37,5 +37,7 @@ urlpatterns = [
          name='password_reset_complete'),
     path('signup_success/', signup_success, name='signup_success'),
     path('signup/', signup_view, name='signup'),
-    path('profile/', profile_view, name='profile'),
+
+    path('profile/', profile_view, name='profile_view'),
+    path('edit_profile/', edit_profile_view, name='edit_profile_view')
 ]
