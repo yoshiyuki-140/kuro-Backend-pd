@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block main %}
+  <div>
+    <label for="">名前</label>
+    <p>{{ user.username }}</p>
+    <label for="">メールアドレス</label>
+    <p>{{ user.email }}</p>
+  </div>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <button name="edit_profile" type="submit">編集する</button>
+  </form>
+{% endblock %}
