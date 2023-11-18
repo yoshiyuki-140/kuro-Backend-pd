@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block main %}
-  <div>
-    <label for="">名前</label>
-    <p>{{ user.username }}</p>
-    <label for="">メールアドレス</label>
-    <p>{{ user.email }}</p>
+  <div class="mb-3">
+    <label for="" class="form-label">名前</label>
+    <p class="form-control">{{ user.username }}</p>
+    <label for="" class="form-label">メールアドレス</label>
+    <p class="form-control">{{ user.email }}</p>
   </div>
-  <form action="" method="POST">
+  <form action="" method="POST" class="mb-3">
     {% csrf_token %}
-    <button name="edit_profile" type="submit">編集する</button>
+    <button name="edit_profile" type="submit" class="btn btn-primary">編集する</button>
   </form>
 {% endblock %}
