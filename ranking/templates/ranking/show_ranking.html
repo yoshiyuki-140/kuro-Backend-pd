@@ -4,13 +4,10 @@
   <h2>ランキング画面</h2>
   <div>
     {% if topics %}
-      <ol>
-        {% for topic in topics %}
-          <li>
-            <a href="{% url 'detail_topic' topic.id %}">{{ topic.title }}</a>
-          </li>
-        {% endfor %}
-      </ol>
+      {% for topic in topics %}
+        <span>{{ forloop.counter }}</span>位
+        <a href="{% url 'detail_topic' topic.id %}">{{ topic.title }}</a><br />
+      {% endfor %}
     {% endif %}
   </div>
 {% endblock %}

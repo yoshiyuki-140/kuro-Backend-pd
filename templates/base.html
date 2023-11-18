@@ -15,20 +15,20 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a href="/" class="navbar-brand">CivicSeek</a>
-        <ul>
-          <li>
+        <ul class="navbar-nav">
+          <li class="nav-item">
             <a href="{% url 'home' %}" class="nav-link text-primary">HOME</a>
           </li>
           {% if user.is_authenticated %}
-            <li>
-              <a href="{% url 'accounts:logout' %}">ログアウト</a>
+            <li class="nav-item">
+              <a href="{% url 'accounts:logout' %}" class="nav-link">ログアウト</a>
             </li>
           {% else %}
-            <li>
-              <a href="{% url 'accounts:login' %}">ログイン</a>
+            <li class="nav-item">
+              <a href="{% url 'accounts:login' %}" class="nav-link">ログイン</a>
             </li>
-            <li>
-              <a href="{% url 'accounts:signup' %}">サインアップ</a>
+            <li class="nav-item">
+              <a href="{% url 'accounts:signup' %}" class="nav-link">サインアップ</a>
             </li>
           {% endif %}
         </ul>

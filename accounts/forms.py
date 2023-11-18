@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django import forms
 
 UserModel = get_user_model()
 
@@ -18,9 +19,8 @@ class SignUpForm(UserCreationForm):
 class CustomLoginForm(AuthenticationForm):
     '''login用のform
     '''
-    class Meta:
-        model = UserModel
-        fields = ('email', 'password')
+    username = forms.EmailField(label='Email')
+
 
 class ProfileEdit(UserChangeForm):
     '''profileを編集するためのform
