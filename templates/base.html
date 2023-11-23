@@ -23,6 +23,9 @@
             <li class="nav-item">
               <a href="{% url 'accounts:logout' %}" class="nav-link">ログアウト</a>
             </li>
+            <li>
+              <a href="{% url 'accounts:profile_view' %}" class="nav-link">プロフィール</a>
+            </li>
           {% else %}
             <li class="nav-item">
               <a href="{% url 'accounts:login' %}" class="nav-link">ログイン</a>
@@ -31,6 +34,9 @@
               <a href="{% url 'accounts:signup' %}" class="nav-link">サインアップ</a>
             </li>
           {% endif %}
+          <li>
+            <a href="{% url 'show_ranking' %}" class="nav-link">ランキング</a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -43,7 +49,9 @@
       </div>
     </main>
     <footer>
-      {% block extrafooter %}{% endblock extrafooter %}
+      {% block extrafooter %}
+
+      {% endblock %}
     </footer>
     {% bootstrap_javascript %}
   </body>
