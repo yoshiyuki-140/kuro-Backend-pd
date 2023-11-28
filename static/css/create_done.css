@@ -6,7 +6,8 @@
     padding: 10px 20px;
     align-items: center;
 }
-.logo{
+
+.logo {
     align-items: center;
 }
 
@@ -25,6 +26,7 @@
     text-decoration: none;
     line-height: 2.3em;
 }
+
 .form-wrapper p {
     text-align: center;
     margin-bottom: 20px;
@@ -32,7 +34,8 @@
 
 /* 認証コード入力フィールドのスタイル */
 .form-item label {
-    display: block; /* ラベルを表示 */
+    display: block;
+    /* ラベルを表示 */
     text-align: left;
     margin-bottom: 5px;
 }

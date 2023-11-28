@@ -6,7 +6,8 @@
     padding: 10px 20px;
     align-items: center;
 }
-.logo{
+
+.logo {
     align-items: center;
 }
 
@@ -27,22 +28,24 @@
 }
 
 /* レスポンシブ対応 */
-@media (max-width: 600px) 
-    .header {
-        flex-direction: column;
-        padding: 10px;
-    }
-    .logo{
-        align-self: start;
-    }
-    .nav ul {
-        flex-direction:row;
-        margin-top: 10px;
-    }
+@media (max-width: 600px) .header {
+    flex-direction: column;
+    padding: 10px;
+}
 
-    .nav ul li {
-        margin-right: 30px;
-    }
+.logo {
+    align-self: start;
+}
+
+.nav ul {
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.nav ul li {
+    margin-right: 30px;
+}
+
 /* 基本的なリセットとボックスサイジング */
 * {
     box-sizing: border-box;
@@ -72,8 +75,8 @@
     color: #333;
 }
 
-.form-item input[type="text"], 
-.form-item input[type="email"], 
+.form-item input[type="text"],
+.form-item input[type="email"],
 .form-item input[type="password"] {
     width: 100%;
     padding: 10px;

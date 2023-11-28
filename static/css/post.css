@@ -6,7 +6,8 @@
     padding: 10px 20px;
     align-items: center;
 }
-.logo{
+
+.logo {
     align-items: center;
 }
 
@@ -32,24 +33,28 @@
         flex-direction: column;
         padding: 10px;
     }
-    .logo{
+
+    .logo {
         align-self: start;
     }
+
     .nav ul {
-        flex-direction:row
-        margin-top: 10px;
+        flex-direction: row margin-top: 10px;
     }
 
     .nav ul li {
         margin-right: 30px;
     }
-    search_container, .post-button {
+
+    search_container,
+    .post-button {
         width: 100%;
         margin: 10px 0;
-        align-items:center ;
+        align-items: center;
     }
 }
-.search_container{
+
+.search_container {
     box-sizing: border-box;
     position: relative;
     border: 1px solid #999;
@@ -60,17 +65,20 @@
     overflow: hidden;
     background: #fff;
     margin-right: 2em;
-  }
-  .search_container input[type="text"]{
+}
+
+.search_container input[type="text"] {
     border: none;
     height: 2.0em;
     color: #333;
     padding-left: 1em
-  }
-  .search_container input[type="text"]:focus {
+}
+
+.search_container input[type="text"]:focus {
     outline: 0;
-  }
-  .search_container input[type="submit"]{
+}
+
+.search_container input[type="submit"] {
     cursor: pointer;
     font-family: FontAwesome;
     font-size: 1.3em;
@@ -82,27 +90,41 @@
     height: 2.5em;
     right: 0;
     top: -10px;
-    outline : none;
-  }
+    outline: none;
+}
+
 .post-button {
-    background-color: #4c61af; /* ボタンの背景色 */
-    color: white; /* ボタンのテキスト色 */
-    padding: 10px 24px; /* ボタンのパディング */
-    border: none; /* ボタンの境界線を削除 */
-    cursor: pointer; /* マウスカーソルをポインタに変更 */
-    text-align: center; /* テキストを中央揃えに */
-    text-decoration: none; /* テキストの下線を削除 */
-    display: inline-block; /* ボタンをインラインブロック要素に */
-    font-size: 16px; /* フォントサイズを設定 */
-    margin: 4px 2px; /* マージンを設定 */
-    transition-duration: 0.4s; /* トランジションの時間を設定 */
+    background-color: #4c61af;
+    /* ボタンの背景色 */
+    color: white;
+    /* ボタンのテキスト色 */
+    padding: 10px 24px;
+    /* ボタンのパディング */
+    border: none;
+    /* ボタンの境界線を削除 */
+    cursor: pointer;
+    /* マウスカーソルをポインタに変更 */
+    text-align: center;
+    /* テキストを中央揃えに */
+    text-decoration: none;
+    /* テキストの下線を削除 */
+    display: inline-block;
+    /* ボタンをインラインブロック要素に */
+    font-size: 16px;
+    /* フォントサイズを設定 */
+    margin: 4px 2px;
+    /* マージンを設定 */
+    transition-duration: 0.4s;
+    /* トランジションの時間を設定 */
     margin-left: em;
 }
+
 ul li {
     display: inline-block;
     color: #333;
-    margin-right: 50px; /* Adjust as needed */
-  }
+    margin-right: 50px;
+    /* Adjust as needed */
+}
 
 /* 基本的なリセットとボックスサイジング */
 * {
@@ -110,6 +132,7 @@ ul li {
     margin: 0;
     padding: 0;
 }
+
 /* フォームのデザイン */
 .form-wrapper {
     max-width: 500px;
@@ -136,8 +159,10 @@ ul li {
 }
 
 .form-item label {
-    margin-bottom: 5px; /* ラベルのマージンを設定 */
-    color: #333; /* ラベルの色を設定 */
+    margin-bottom: 5px;
+    /* ラベルのマージンを設定 */
+    color: #333;
+    /* ラベルの色を設定 */
 }
 
 .form-item input[type="text"],
@@ -149,8 +174,10 @@ ul li {
 }
 
 .form-item textarea {
-    height: 150px; /* テキストエリアの高さを設定 */
-    resize: vertical; /* 垂直方向のリサイズのみ許可 */
+    height: 150px;
+    /* テキストエリアの高さを設定 */
+    resize: vertical;
+    /* 垂直方向のリサイズのみ許可 */
 }
 
 .button-panel {

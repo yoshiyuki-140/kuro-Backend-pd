@@ -6,12 +6,19 @@
     padding: 10px 20px;
     align-items: center;
 }
+
 .logo {
     align-items: center;
 }
-.logo a, .logo a:visited, .logo a:hover, .logo a:active {
-    color:inherit;  /* リンクの色を白に設定 */
-    text-decoration: none; /* テキストの下線を削除 */
+
+.logo a,
+.logo a:visited,
+.logo a:hover,
+.logo a:active {
+    color: inherit;
+    /* リンクの色を白に設定 */
+    text-decoration: none;
+    /* テキストの下線を削除 */
 }
 
 .nav ul {
@@ -36,31 +43,35 @@
         flex-direction: column;
         padding: 10px;
     }
-    .logo{
+
+    .logo {
         align-self: start;
     }
+
     .nav ul {
-        flex-direction:row
-        margin-top: 10px;
+        flex-direction: row margin-top: 10px;
     }
 
     .nav ul li {
         margin-right: 30px;
     }
-    search_container, .post-button {
+
+    search_container,
+    .post-button {
         width: 100%;
         margin: 10px 0;
-        align-items:center ;
+        align-items: center;
     }
-    
+
 }
 
 
 ul li {
     display: inline-block;
     color: #333;
-    margin-right: 50px; /* Adjust as needed */
-  }
+    margin-right: 50px;
+    /* Adjust as needed */
+}
 
 /* 基本的なリセットとボックスサイジング */
 * {
@@ -68,6 +79,7 @@ ul li {
     margin: 0;
     padding: 0;
 }
+
 /* フォームのデザイン*/
 .form-wrapper {
     max-width: 500px;
@@ -94,7 +106,8 @@ ul li {
 }
 
 .form-item label {
-    display: none; /* ラベルは空なので表示しない */
+    display: none;
+    /* ラベルは空なので表示しない */
 }
 
 .form-item input[type="email"],
@@ -141,54 +154,54 @@ ul li {
 .form-footer a:hover {
     text-decoration: underline;
 }
+
 /* スマートフォンや小さなデバイス用 */
 @media (max-width: 600px) {
     .form-wrapper {
-      margin: 20px auto;
-      padding: 10px;
+        margin: 20px auto;
+        padding: 10px;
     }
-  
+
     .form-item input[type="email"],
     .form-item input[type="password"] {
-      padding: 8px;
+        padding: 8px;
     }
-  
+
     .button-panel .button {
-      padding: 8px 0;
+        padding: 8px 0;
     }
-  }
-  
-  /* タブレット用 */
-  @media (min-width: 601px) and (max-width: 1024px) {
+}
+
+/* タブレット用 */
+@media (min-width: 601px) and (max-width: 1024px) {
     .form-wrapper {
-      margin: 30px auto;
-      padding: 15px;
+        margin: 30px auto;
+        padding: 15px;
     }
-  
+
     .form-item input[type="email"],
     .form-item input[type="password"] {
-      padding: 10px;
+        padding: 10px;
     }
-  
+
     .button-panel .button {
-      padding: 10px 0;
+        padding: 10px 0;
     }
-  }
-  
-  /* デスクトップ用 */
-  @media (min-width: 1025px) {
+}
+
+/* デスクトップ用 */
+@media (min-width: 1025px) {
     .form-wrapper {
-      margin: 50px auto;
-      padding: 20px;
+        margin: 50px auto;
+        padding: 20px;
     }
-  
+
     .form-item input[type="email"],
     .form-item input[type="password"] {
-      padding: 12px;
+        padding: 12px;
     }
-  
+
     .button-panel .button {
-      padding: 12px 0;
+        padding: 12px 0;
     }
-  }
- 
+}
